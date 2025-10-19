@@ -5,11 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import to_do_list.domain.entity.Task;
+import to_do_list.dto.comment.CommentGetResponse;
 import to_do_list.dto.task.*;
 import to_do_list.exception.InvalidPasswordException;
 import to_do_list.repository.TaskRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +41,7 @@ public class TaskServiceImpl implements TaskService {
                 () -> new IllegalStateException("존재하지 않는 id")
         );
         return new TaskGetResponse(taskId
+                , getComments(task)
                 , task.getDeadline()
                 , task.getProject()
                 , task.getTaskCategory()
@@ -51,11 +52,6 @@ public class TaskServiceImpl implements TaskService {
                 , task.getModifiedAt());
     }
 
-    /**
-     * `작성자명`을 기준으로 등록된 일정 목록을 전부 조회
-     * 1.`작성자명`은 조회 조건으로 포함될 수도 있고,
-     * 2. 포함되지 않을 수도 있습니다.
-     */
     @Override
     @Transactional(readOnly = true)
     public List<TaskGetResponse> getAll(String findAuthor) {
@@ -64,6 +60,7 @@ public class TaskServiceImpl implements TaskService {
                 .filter(task -> task.getAuthor().equals(findAuthor)) // 작성자 필터
                 .map(task -> new TaskGetResponse(
                         task.getId(),
+                        getComments(task),
                         task.getDeadline(),
                         task.getProject(),
                         task.getTaskCategory(),
@@ -81,6 +78,7 @@ public class TaskServiceImpl implements TaskService {
         return taskRepository.findAll().stream()
                 .map(task -> new TaskGetResponse(
                         task.getId(),
+                        getComments(task),
                         task.getDeadline(),
                         task.getProject(),
                         task.getTaskCategory(),
@@ -136,5 +134,15 @@ public class TaskServiceImpl implements TaskService {
             throw new InvalidPasswordException("비밀번호가 일치하지 않습니다.");
         }
         return task;
+    }
+
+    private List<CommentGetResponse> getComments(Task task) {
+        log.info("getComments length: {}", task.getComments().size());
+        return task.getComments().stream()
+                .map(comment -> new CommentGetResponse(comment.getId()
+                        , comment.getAuthor()
+                        , comment.getDescription()
+                        , comment.getCreatedAt()
+                        , comment.getModifiedAt())).collect(Collectors.toList());
     }
 }

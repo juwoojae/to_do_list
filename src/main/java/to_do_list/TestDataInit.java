@@ -52,7 +52,7 @@ public class TestDataInit {
         Comment comment2 = new Comment("test@", "두 번째 댓글", "han");
         comment1.affectTask(task1);
         commentRepository.save(comment1);
-        comment2.affectTask(task2);
+        comment2.affectTask(task1);
         commentRepository.save(comment2);
 
 
