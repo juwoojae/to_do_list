@@ -13,6 +13,7 @@ public class TaskUpdateRequest {
     private Project project;
     private TaskCategory taskCategory;
     private String author;
+    private String title;
     private TaskStatus taskStatus;
     private String description;
 }

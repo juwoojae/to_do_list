@@ -23,13 +23,14 @@ public class TaskServiceImpl implements TaskService {
     @Override
     @Transactional
     public TaskCreateResponse register(TaskCreateRequest requset) {
-        Task task = new Task(requset.getPassword(), requset.getDeadline(), requset.getProject(), requset.getTaskCategory(), requset.getAuthor(), requset.getTaskStatus(), requset.getDescription());
+        Task task = new Task(requset.getPassword(), requset.getDeadline(), requset.getProject(), requset.getTaskCategory(), requset.getAuthor(), requset.getTitle(), requset.getTaskStatus(), requset.getDescription());
         Task save = taskRepository.save(task);
         return new TaskCreateResponse(save.getId()
                 , save.getDeadline()
                 , save.getProject()
                 , requset.getTaskCategory()
                 , save.getAuthor()
+                , save.getTitle()
                 , save.getTaskStatus()
                 , save.getDescription());
     }
@@ -46,6 +47,7 @@ public class TaskServiceImpl implements TaskService {
                 , task.getProject()
                 , task.getTaskCategory()
                 , task.getAuthor()
+                , task.getTitle()
                 , task.getTaskStatus()
                 , task.getDescription()
                 , task.getCreatedAt()
@@ -65,6 +67,7 @@ public class TaskServiceImpl implements TaskService {
                         task.getProject(),
                         task.getTaskCategory(),
                         task.getAuthor(),
+                        task.getTitle(),
                         task.getTaskStatus(),
                         task.getDescription(),
                         task.getCreatedAt(),
@@ -83,6 +86,7 @@ public class TaskServiceImpl implements TaskService {
                         task.getProject(),
                         task.getTaskCategory(),
                         task.getAuthor(),
+                        task.getTitle(),
                         task.getTaskStatus(),
                         task.getDescription(),
                         task.getCreatedAt(),
@@ -100,6 +104,7 @@ public class TaskServiceImpl implements TaskService {
                 request.getProject(),
                 request.getTaskCategory(),
                 request.getAuthor(),
+                request.getTitle(),
                 request.getTaskStatus(),
                 request.getDescription()
         );
@@ -108,6 +113,7 @@ public class TaskServiceImpl implements TaskService {
                 task.getProject(),
                 task.getTaskCategory(),
                 task.getAuthor(),
+                task.getTitle(),
                 task.getTaskStatus(),
                 task.getDescription()
         );

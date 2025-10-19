@@ -10,8 +10,6 @@ import to_do_list.domain.TaskCategory;
 import to_do_list.domain.TaskStatus;
 import to_do_list.repository.CommentRepository;
 import to_do_list.repository.TaskRepository;
-import to_do_list.service.CommentService;
-import to_do_list.service.TaskService;
 
 
 import java.time.LocalDate;
@@ -33,6 +31,7 @@ public class TestDataInit {
                 Project.RIVERS,
                 TaskCategory.CODE_REVIEW,
                 "kim",
+                "데이터 베이스 심화",
                 TaskStatus.IN_PROGRESS,
                 "테스트용 설명 1"
         );
@@ -43,6 +42,7 @@ public class TestDataInit {
                 Project.RIVERS,
                 TaskCategory.MEETING,
                 "lee",
+                "Spring",
                 TaskStatus.COMPLETED,
                 "테스트용 설명 2"
         );

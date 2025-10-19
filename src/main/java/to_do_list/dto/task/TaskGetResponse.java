@@ -22,6 +22,7 @@ public class TaskGetResponse {
     private final Project project;
     private final TaskCategory taskCategory;
     private final String author;
+    private final String title;
     private final TaskStatus taskStatus;
     private final String description;
     private LocalDateTime createdAt;
