@@ -32,6 +32,7 @@ public class Task extends BaseEntity {
     @OneToMany(mappedBy = "task")//누구랑 매핑되어있는지
     private List<Comment> comments = new ArrayList<>(); //주인의 반대편
 
+    @Column(nullable = false)
     private String password;
 
     private LocalDate deadline; //기한(날짜)
@@ -43,9 +44,10 @@ public class Task extends BaseEntity {
     @Column(name = "task_category")
     private TaskCategory taskCategory; //업무 구분
 
-    @Column(length = 30, nullable = false)
+    @Column(nullable = false)
     private String author; //작성자
 
+    @Column(length = 30, nullable = false)
     private String title;  //일정 제목
 
     @Enumerated(EnumType.STRING)

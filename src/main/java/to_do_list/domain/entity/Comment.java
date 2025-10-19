@@ -21,10 +21,14 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "task_id")
     private Task task;
 
+    @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
     private String author;
 
     @Lob
+    @Column(length = 100, nullable = false)
     private String description;
 
     public Comment(String password, String description, String author) {
