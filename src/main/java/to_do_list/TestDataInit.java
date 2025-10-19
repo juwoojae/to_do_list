@@ -10,7 +10,7 @@ import to_do_list.domain.TaskStatus;
 import to_do_list.repository.TaskRepository;
 import to_do_list.service.TaskService;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Component
 @RequiredArgsConstructor
@@ -19,22 +19,27 @@ public class TestDataInit {
     private final TaskRepository taskRepository;
     private final TaskService taskService;
 
+    /**
+     * 테스트 케이스 만들기
+     */
     @PostConstruct
     public void init() {
         Task task1 = new Task(
-                LocalDateTime.of(2025, 10, 20, 12, 0),
+                "test1",
+                LocalDate.of(2025, 10, 20),
                 Project.RIVERS,
                 TaskCategory.CODE_REVIEW,
-                "첫 번째 작업",
+                "kim",
                 TaskStatus.IN_PROGRESS,
                 "테스트용 설명 1"
         );
 
         Task task2 = new Task(
-                LocalDateTime.of(2025, 11, 1, 18, 30),
+                "test2",
+                LocalDate.of(2025, 11, 1),
                 Project.RIVERS,
                 TaskCategory.MEETING,
-                "두 번째 작업",
+                "lee",
                 TaskStatus.COMPLETED,
                 "테스트용 설명 2"
         );

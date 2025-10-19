@@ -1,28 +1,28 @@
-package to_do_list.dto;
+package to_do_list.dto.task;
 
 import lombok.Getter;
 import to_do_list.domain.Project;
 import to_do_list.domain.TaskCategory;
 import to_do_list.domain.TaskStatus;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
-public class TaskCreateResponse {
+public class TaskUpdateResponse {
     private final Long id;
-    private final LocalDateTime deadline;
+    private final LocalDate deadline;
     private final Project project;
     private final TaskCategory taskCategory;
-    private final String name;
+    private final String author;
     private final TaskStatus taskStatus;
     private final String description;
 
-    public TaskCreateResponse(Long id, LocalDateTime deadline, Project project, TaskCategory taskCategory, String name, TaskStatus taskStatus, String description) {
+    public TaskUpdateResponse(Long id, LocalDate deadline, Project project, TaskCategory taskCategory, String author, TaskStatus taskStatus, String description) {
         this.id = id;
         this.deadline = deadline;
         this.project = project;
         this.taskCategory = taskCategory;
-        this.name = name;
+        this.author = author;
         this.taskStatus = taskStatus;
         this.description = description;
     }
