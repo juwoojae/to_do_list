@@ -25,12 +25,8 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional
-    public CommentCreateResponse register(CommentCreateRequest requset, Long TaskId) {
-        Task task = taskRepository.findById(TaskId)
-                .orElseThrow(() -> new IllegalStateException("존재하지 않는 id"));
-        if(task.getComments().size()>10){
-            throw new ResourceLimitExceededException("객체 생성 불가");
-        }
+    public CommentCreateResponse register(Long TaskId, CommentCreateRequest requset) {
+        Task task = validateCommentCreationLimit(TaskId);
         Comment comment = new Comment(requset.getPassword(), requset.getDescription(), requset.getAuthor());
         comment.affectTask(task);
         Comment save = commentRepository.save(comment);
@@ -85,5 +81,14 @@ public class CommentServiceImpl implements CommentService {
             throw new InvalidPasswordException("비밀번호가 일치하지 않습니다.");
         }
         return comment;
+    }
+
+    private Task validateCommentCreationLimit(Long TaskId) {
+        Task task = taskRepository.findById(TaskId)
+                .orElseThrow(() -> new IllegalStateException("존재하지 않는 id"));
+        if(task.getComments().size()>10){
+            throw new ResourceLimitExceededException("객체 생성 불가");
+        }
+        return task;
     }
 }

@@ -6,7 +6,7 @@ import to_do_list.dto.comment.*;
 import java.util.List;
 
 public interface CommentService {
-    CommentCreateResponse register(CommentCreateRequest requset, Long TaskId);
+    CommentCreateResponse register(Long TaskId, CommentCreateRequest requset);
 
     CommentGetResponse getOne(Long CommentId);
 
