@@ -2,7 +2,7 @@
 
 ### 1. 프로젝트 설명
 
-![img.png](img.png)
+![img.png](docs/img.png)
 
 ## to do list 클라이언트의 요청에 따라서 API 를 보내주는 서버
 
@@ -28,33 +28,33 @@
 
 #### Postman test 결과
 ##### 1. 등록 `201`
-![img_3.png](img_3.png)
+![img_3.png](docs/img_3.png)
 ##### 예외 처리 
 1. 비밀번호를 빼고 보내는 경우 `400`
-![img_2.png](img_2.png)
+![img_2.png](docs/img_2.png)
 2 1.(통합) 일정 제목 이 30 줄이 넘어가는 경우 `400`
-![img_18.png](img_18.png)
+![img_18.png](docs/img_18.png)
 3 1.(통합)  일정 내용 이 200 줄이 넘어가는 경우 `400`
-![img_19.png](img_19.png)
+![img_19.png](docs/img_19.png)
 ##### 2. 전체 조회 `200` 
-![img_1.png](img_1.png)
+![img_1.png](docs/img_1.png)
 ##### 3. 전체 조회(작성자) `200`
-![img_4.png](img_4.png)
+![img_4.png](docs/img_4.png)
 ##### 4. 선택 조회 `200`
-![img_5.png](img_5.png)
+![img_5.png](docs/img_5.png)
 ##### 예외 처리 
 1. id 가 없는경우 `404`
-![img_6.png](img_6.png)
+![img_6.png](docs/img_6.png)
 ###### 5. 수정 `200`
 (title 변경)
-![img_7.png](img_7.png)
+![img_7.png](docs/img_7.png)
 ###### 예외 처리
 1. 비밀번호를 빼고 보내는 경우 ,또는 데이터 누락 `400`
 2. id 가 없는경우 `404`
 3. 비밀번호가 맞지 않는경우 401`
-![img_8.png](img_8.png)
+![img_8.png](docs/img_8.png)
 ##### 삭제 `204`
-![img_9.png](img_9.png)
+![img_9.png](docs/img_9.png)
 ###### 예외 처리
 1. 비밀번호를 빼고 보내는 경우 ,또는 데이터 누락 `400`
 2. id 가 없는경우 `404`
@@ -71,25 +71,25 @@
 
 #### Postman test 결과
 ##### 1. 등록 `201`
-![img_14.png](img_14.png)
+![img_14.png](docs/img_14.png)
 ##### 예외 처리
 1. 비밀번호를 빼고 보내는 경우 `400`
-    ![img_11.png](img_11.png)
+    ![img_11.png](docs/img_11.png)
 ##### 2. 전체 조회 `200`
-![img_10.png](img_10.png)
+![img_10.png](docs/img_10.png)
 ##### 3. 선택 조회 `200`
-![img_15.png](img_15.png)
+![img_15.png](docs/img_15.png)
 ##### 예`외 처리`
 1. id 가 없는경우 `404`
 ###### 4. 수정 `200`
 (title 변경)
-![img_16.png](img_16.png)
+![img_16.png](docs/img_16.png)
 ###### 예외 처리
 1. 비밀번호를 빼고 보내는 경우 ,또는 데이터 누락 `400`
 2. id 가 없는경우 `404`
 3. 비밀번호가 맞지 않는경우 `401`
 ##### 삭제 `204`
-![img_17.png](img_17.png)
+![img_17.png](docs/img_17.png)
 ###### 예외 처리
 1. 비밀번호를 빼고 보내는 경우 ,또는 데이터 누락 `400`
 2. id 가 없는경우 `404`
