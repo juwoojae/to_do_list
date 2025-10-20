@@ -1,5 +1,6 @@
 package to_do_list.service;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     @Transactional
-    public TaskCreateResponse register(TaskCreateRequest requset) {
+    public TaskCreateResponse register( TaskCreateRequest requset) {
         Task task = new Task(requset.getPassword(), requset.getDeadline(), requset.getProject(), requset.getTaskCategory(), requset.getAuthor(), requset.getTitle(), requset.getTaskStatus(), requset.getDescription());
         Task save = taskRepository.save(task);
         return new TaskCreateResponse(save.getId()

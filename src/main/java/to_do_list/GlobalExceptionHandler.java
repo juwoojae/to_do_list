@@ -1,10 +1,14 @@
-package to_do_list.exception;
+package to_do_list;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import to_do_list.exception.InvalidPasswordException;
+import to_do_list.exception.NotFoundException;
+import to_do_list.exception.ResourceLimitExceededException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +18,14 @@ import java.util.Map;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    /**
+     * HttpMessageNotReadableException 검증
+     */
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<String> NotReadableErrors(HttpMessageNotReadableException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
     /**
      * 2차 서버 검증 - beanValidation 에 대한 400 를 포함한 HTTP 메세지 전달
      */
