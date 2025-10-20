@@ -8,6 +8,7 @@ import to_do_list.domain.entity.Task;
 import to_do_list.dto.comment.CommentGetResponse;
 import to_do_list.dto.task.*;
 import to_do_list.exception.InvalidPasswordException;
+import to_do_list.exception.NotFoundException;
 import to_do_list.repository.TaskRepository;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
     @Transactional(readOnly = true)
     public TaskGetResponse getOne(Long taskId) {
         Task task = taskRepository.findById(taskId).orElseThrow(
-                () -> new IllegalStateException("존재하지 않는 id")
+                () -> new NotFoundException(taskId, "존재하지 않는 id")
         );
         return new TaskGetResponse(taskId
                 , getComments(task)
@@ -135,9 +136,9 @@ public class TaskServiceImpl implements TaskService {
 
     private Task getTaskWithPasswordCheck(Long taskId, String requestPassword) {
         Task task = taskRepository.findById(taskId)
-                .orElseThrow(() -> new IllegalStateException("해당 ID의 Task가 존재하지 않습니다."));
+                .orElseThrow(() -> new NotFoundException(taskId, "해당 ID의 Task가 존재하지 않습니다."));
         if (!requestPassword.equals(task.getPassword())) {
-            throw new InvalidPasswordException("비밀번호가 일치하지 않습니다.");
+            throw new InvalidPasswordException(requestPassword, "비밀번호가 일치하지 않습니다.");
         }
         return task;
     }

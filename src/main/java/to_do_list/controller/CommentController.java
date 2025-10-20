@@ -1,5 +1,6 @@
 package to_do_list.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping
-    public ResponseEntity<CommentCreateResponse> addComment(@PathVariable Long taskId, @RequestBody CommentCreateRequest request) {
+    public ResponseEntity<CommentCreateResponse> addComment(@PathVariable Long taskId, @Valid @RequestBody CommentCreateRequest request) {
         CommentCreateResponse result = commentService.register(taskId, request);
         log.info("Comments created successfully and result is {}", result);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
@@ -43,14 +44,14 @@ public class CommentController {
     }
 
     @PutMapping("/{commentId}")
-    public ResponseEntity<CommentUpdateResponse> editTask(@PathVariable Long commentId, @RequestBody CommentUpdateRequest commentUpdateRequest) {
+    public ResponseEntity<CommentUpdateResponse> editTask(@PathVariable Long commentId, @Valid @RequestBody CommentUpdateRequest commentUpdateRequest) {
         CommentUpdateResponse result = commentService.update(commentId, commentUpdateRequest);
         log.info("Comments edit successfully and result is {}", result);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @DeleteMapping("/{commentId}")
-    public ResponseEntity<Void> deleteTask(@PathVariable Long commentId, @RequestBody CommentDeleteRequest commentDeleteRequest) {
+    public ResponseEntity<Void> deleteTask(@PathVariable Long commentId, @Valid @RequestBody CommentDeleteRequest commentDeleteRequest) {
         commentService.remove(commentId, commentDeleteRequest);
         log.info("Comments delete successfully and result is {}", commentId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
